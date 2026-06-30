@@ -1,0 +1,20 @@
+name: Caving
+version: '0.1'
+
+main: me.antek81.caving.Caving
+api-version: '26.1.2'
+load: POSTWORLD
+
+commands:
+  cave:
+    description: Main command for Caving plugin.
+    usage: /cave (setup|join|start|cancel|rules)
+    permission: "caving.cave"
+
+permissions:
+  caving.cave:
+    description: Permission that is meant for every player. It allows participating in event.
+    default: true;
+  caving.cave.admin:
+    description: Meant for event hosts and server admins.
+    default: op;
