@@ -25,9 +25,9 @@ public class CaveEvent {
             BossBar.Color.BLUE,
             BossBar.Overlay.PROGRESS);
 
-    // playersPoints(playerName, points)
+    // playersPoints(player, points)
     HashMap<Player, Integer> playersPoints = new HashMap<>();
-    // players...(playerName, minedOre)
+    // players...(player, minedOre)
     HashMap<Player, Integer> playersCoal = new HashMap<>();
     HashMap<Player, Integer> playersIron = new HashMap<>();
     HashMap<Player, Integer> playersCopper = new HashMap<>();
