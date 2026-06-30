@@ -1,6 +1,5 @@
 package me.antek81.caving.event;
 
-import me.antek81.caving.util.DelayedTask;
 import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;

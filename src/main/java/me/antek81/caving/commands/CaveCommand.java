@@ -63,7 +63,7 @@ public class CaveCommand implements TabExecutor {
                 if (args.length == 1) {
                     caveEvent.join(player);
                     sender.sendMessage("§7You have joined Caving event.");
-                } /* else if (sender.hasPermission("caving.cave.admin")) {
+                }  /* else if (sender.hasPermission("caving.cave.admin")) {
                     caveEvent.join(args[1]);
                     sender.sendMessage("§7You forced §8" + args[1] + "§7 into joining Caving event.");
                 }

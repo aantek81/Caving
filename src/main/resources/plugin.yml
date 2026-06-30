@@ -8,13 +8,13 @@ load: POSTWORLD
 commands:
   cave:
     description: Main command for Caving plugin.
-    usage: /cave (setup|join|start|cancel|rules)
+    usage: /cave (join|rules|start|cancel|setup)
     permission: "caving.cave"
 
 permissions:
   caving.cave:
     description: Permission that is meant for every player. It allows participating in event.
-    default: true;
+    default: true
   caving.cave.admin:
     description: Meant for event hosts and server admins.
-    default: op;
+    default: op
