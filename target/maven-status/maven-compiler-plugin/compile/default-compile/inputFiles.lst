@@ -1,5 +1,4 @@
 C:\Users\ksiaz\IdeaProjects\Caving\src\main\java\me\antek81\caving\Caving.java
 C:\Users\ksiaz\IdeaProjects\Caving\src\main\java\me\antek81\caving\commands\CaveCommand.java
 C:\Users\ksiaz\IdeaProjects\Caving\src\main\java\me\antek81\caving\event\CaveEvent.java
-C:\Users\ksiaz\IdeaProjects\Caving\src\main\java\me\antek81\caving\util\DelayedTask.java
-C:\Users\ksiaz\IdeaProjects\Caving\src\main\java\me\antek81\caving\util\eventRepeat.java
+C:\Users\ksiaz\IdeaProjects\Caving\src\main\java\me\antek81\caving\listeners\OreDrop.java

@@ -77,11 +77,13 @@ public class CaveEvent {
     public void start() {
         active = true;
 
+        eventBar = BossBar.bossBar(Component.text("Caving Event").color(NamedTextColor.DARK_GRAY),
+                1,
+                BossBar.Color.BLUE,
+                BossBar.Overlay.PROGRESS);
+
         for (Player player : playersPoints.keySet()) {
-            eventBar = BossBar.bossBar(Component.text("Caving Event").color(NamedTextColor.DARK_GRAY),
-                    1,
-                    BossBar.Color.BLUE,
-                    BossBar.Overlay.PROGRESS);
+            player.sendMessage("Caving Event has started. Good luck!");
             player.showBossBar(eventBar);
         }
 
@@ -103,8 +105,7 @@ public class CaveEvent {
                     for (Player player : playersPoints.keySet()) {
                         player.hideBossBar(eventBar);
                         player.sendMessage("Player " + winner.getName() + "has won the Caving Event with " + playersPoints.get(winner) + "points!");
-                        player.sendMessage("You have collected " + playersPoints.get(player) + "points \n" +
-                                "and mined: " +
+                        player.sendMessage("You have collected " + playersPoints.get(player) + " points and mined: " +
                                 "\nCoal Ore - " + playersCoal.get(player) +
                                 "\nIron Ore - " + playersIron.get(player) +
                                 "\nCopper Ore - " + playersCopper.get(player) +
@@ -181,4 +182,94 @@ public class CaveEvent {
 
         }.runTaskTimer(plugin, 0L, 20L);
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean isParticipant(Player player) {
+        return playersPoints.containsKey(player);
+    }
+
+    public void addCoal(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersCoal.get(player) + 1;
+        playersCoal.put(player, ore);
+
+        player.sendMessage("You have mined coal ore");
+    }
+
+    public void addIron(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersIron.get(player) + 1;
+        playersIron.put(player, ore);
+
+        player.sendMessage("You have mined iron ore");
+    }
+
+    public void addCopper(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersCopper.get(player) + 1;
+        playersCopper.put(player, ore);
+
+        player.sendMessage("You have mined copper ore");
+    }
+
+    public void addGold(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersGold.get(player) + 1;
+        playersGold.put(player, ore);
+
+        player.sendMessage("You have mined gold ore");
+    }
+
+    public void addRedstone(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersRedstone.get(player) + 1;
+        playersRedstone.put(player, ore);
+
+        player.sendMessage("You have mined redstone ore");
+    }
+
+    public void addLapis(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersLapis.get(player) + 1;
+        playersLapis.put(player, ore);
+
+        player.sendMessage("You have mined lapis ore");
+    }
+
+    public void addDiamond(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersDiamond.get(player) + 1;
+        playersDiamond.put(player, ore);
+
+        player.sendMessage("You have mined diamond ore");
+    }
+
+    public void addEmerald(Player player) {
+        int points = playersPoints.get(player) + 1;
+        playersPoints.put(player, points);
+
+        int ore = playersEmerald.get(player) + 1;
+        playersEmerald.put(player, ore);
+
+        player.sendMessage("You have mined emerald ore");
+    }
+
+
 }

@@ -2,6 +2,7 @@ package me.antek81.caving;
 
 import me.antek81.caving.commands.CaveCommand;
 import me.antek81.caving.event.CaveEvent;
+import me.antek81.caving.listeners.OreDrop;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Caving extends JavaPlugin {
@@ -12,6 +13,7 @@ public final class Caving extends JavaPlugin {
         CaveEvent caveEvent = new CaveEvent(this);
 
         getCommand("cave").setExecutor(new CaveCommand(caveEvent));
+        getServer().getPluginManager().registerEvents(new OreDrop(caveEvent), this);
 
         getLogger().info("Caving plugin has been loaded");
     }
