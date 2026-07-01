@@ -12,13 +12,16 @@ import java.util.*;
 public class CaveEvent {
     private final Plugin plugin;
 
-    public CaveEvent(Plugin plugin) {
-        this.plugin = plugin;
-    }
-
     Player eventCreator;
     long eventDuration;
     boolean active = false;
+
+    HashMap<String, Short> configPoints = new HashMap<>();
+
+    public CaveEvent(Plugin plugin, HashMap<String, Short> points) {
+        this.plugin = plugin;
+        configPoints.putAll(points);
+    }
 
     BossBar eventBar = BossBar.bossBar(Component.text("Caving Event").color(NamedTextColor.DARK_GRAY),
             1,
@@ -104,7 +107,7 @@ public class CaveEvent {
 
                     for (Player player : playersPoints.keySet()) {
                         player.hideBossBar(eventBar);
-                        player.sendMessage("Player " + winner.getName() + "has won the Caving Event with " + playersPoints.get(winner) + "points!");
+                        player.sendMessage("Player " + winner.getName() + " has won the Caving Event with " + playersPoints.get(winner) + " points!");
                         player.sendMessage("You have collected " + playersPoints.get(player) + " points and mined: " +
                                 "\nCoal Ore - " + playersCoal.get(player) +
                                 "\nIron Ore - " + playersIron.get(player) +
@@ -173,10 +176,6 @@ public class CaveEvent {
 
                 eventBar.progress((float) timeLeft / eventDuration);
 
-                for (Player player : playersPoints.keySet()) {
-                    player.sendMessage(timeLeft + ", " + (100f * timeLeft / eventDuration));
-                }
-
                 timeLeft--;
             }
 
@@ -192,7 +191,7 @@ public class CaveEvent {
     }
 
     public void addCoal(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("coal");
         playersPoints.put(player, points);
 
         int ore = playersCoal.get(player) + 1;
@@ -202,7 +201,7 @@ public class CaveEvent {
     }
 
     public void addIron(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("iron");
         playersPoints.put(player, points);
 
         int ore = playersIron.get(player) + 1;
@@ -212,7 +211,7 @@ public class CaveEvent {
     }
 
     public void addCopper(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("copper");
         playersPoints.put(player, points);
 
         int ore = playersCopper.get(player) + 1;
@@ -222,7 +221,7 @@ public class CaveEvent {
     }
 
     public void addGold(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("gold");
         playersPoints.put(player, points);
 
         int ore = playersGold.get(player) + 1;
@@ -232,7 +231,7 @@ public class CaveEvent {
     }
 
     public void addRedstone(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("redstone");
         playersPoints.put(player, points);
 
         int ore = playersRedstone.get(player) + 1;
@@ -242,7 +241,7 @@ public class CaveEvent {
     }
 
     public void addLapis(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("lapis");
         playersPoints.put(player, points);
 
         int ore = playersLapis.get(player) + 1;
@@ -252,7 +251,7 @@ public class CaveEvent {
     }
 
     public void addDiamond(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("diamond");
         playersPoints.put(player, points);
 
         int ore = playersDiamond.get(player) + 1;
@@ -262,7 +261,7 @@ public class CaveEvent {
     }
 
     public void addEmerald(Player player) {
-        int points = playersPoints.get(player) + 1;
+        int points = playersPoints.get(player) + configPoints.get("emerald");
         playersPoints.put(player, points);
 
         int ore = playersEmerald.get(player) + 1;

@@ -5,3 +5,4 @@
 - Make it work when player leave server mid-event
 - Add config file
 - Make sendMessages with miniMessage
+- `/cave join \<player>` to force join player by admin

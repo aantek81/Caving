@@ -1,0 +1,9 @@
+points:
+  coal: 0
+  iron: 1
+  copper: 1
+  gold: 4
+  redstone: 5
+  lapis: 6
+  diamond: 10
+  emerald: 9
