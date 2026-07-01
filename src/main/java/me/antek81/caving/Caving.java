@@ -3,8 +3,10 @@ package me.antek81.caving;
 import me.antek81.caving.commands.CaveCommand;
 import me.antek81.caving.event.CaveEvent;
 import me.antek81.caving.listeners.OreDrop;
+import me.antek81.caving.messages.Messages;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.HashMap;
 
 public final class Caving extends JavaPlugin {
@@ -12,11 +14,15 @@ public final class Caving extends JavaPlugin {
     @Override
     public void onLoad() {
         saveDefaultConfig();
+
+        saveResource("messages.yml", false);
     }
 
     @Override
     public void onEnable() {
         // Plugin startup logic
+        final Messages messages = new Messages(new File(getDataFolder(), "messages.yml"));
+
         HashMap<String, Short> configPoints = new HashMap<>();
         configPoints.put("coal", (short) getConfig().getInt("points.coal"));
         configPoints.put("iron", (short) getConfig().getInt("points.iron"));
@@ -27,9 +33,9 @@ public final class Caving extends JavaPlugin {
         configPoints.put("diamond", (short) getConfig().getInt("points.diamond"));
         configPoints.put("emerald", (short) getConfig().getInt("points.emerald"));
 
-        CaveEvent caveEvent = new CaveEvent(this, configPoints);
+        CaveEvent caveEvent = new CaveEvent(this, configPoints, messages);
 
-        getCommand("cave").setExecutor(new CaveCommand(caveEvent));
+        getCommand("cave").setExecutor(new CaveCommand(caveEvent, messages));
         getServer().getPluginManager().registerEvents(new OreDrop(caveEvent), this);
 
         getLogger().info("Caving plugin has been loaded");

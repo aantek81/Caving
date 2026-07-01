@@ -1,6 +1,8 @@
 me\antek81\caving\Caving.class
 me\antek81\caving\listeners\OreDrop$1.class
 me\antek81\caving\commands\CaveCommand.class
+me\antek81\caving\messages\Messages.class
 me\antek81\caving\event\CaveEvent$1.class
 me\antek81\caving\event\CaveEvent.class
 me\antek81\caving\listeners\OreDrop.class
+me\antek81\caving\messages\MessageType.class

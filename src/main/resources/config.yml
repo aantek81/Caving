@@ -1,3 +1,6 @@
+# To customize messages use messages.yml file
+
+# Set how much points player should get after mining each ore
 points:
   coal: 0
   iron: 1

@@ -1,6 +1,9 @@
 package me.antek81.caving.commands;
 
 import me.antek81.caving.event.CaveEvent;
+import me.antek81.caving.messages.MessageType;
+import me.antek81.caving.messages.Messages;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -16,21 +19,23 @@ import java.util.List;
 public class CaveCommand implements TabExecutor {
 
     private final CaveEvent caveEvent;
+    private final Messages messages;
 
-    public CaveCommand(CaveEvent caveEvent) {
+    public CaveCommand(CaveEvent caveEvent, Messages messages) {
         this.caveEvent = caveEvent;
+        this.messages = messages;
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
                              @NotNull String label, @NotNull String @NotNull [] args) {
         if (!(sender instanceof final Player player)) {
-            sender.sendMessage("§cOnly players can execute this command!");
+            sender.sendMessage(messages.getMessage(MessageType.COMMAND_ONLY_FOR_PLAYERS));
             return true;
         }
 
         if (args.length == 0) {
-            sender.sendMessage("§cPlease use proper subcommands.");
+            sender.sendMessage(messages.getMessage(MessageType.COMMAND_USE_PROPER_SUB));
             return true;
         }
 
@@ -46,24 +51,24 @@ public class CaveCommand implements TabExecutor {
                             Duration duration = Duration.parse("PT" + args[1]);
                             seconds = duration.getSeconds();
                         } catch (Exception e) {
-                            sender.sendMessage("§cPlease adhere to proper time format: §7nnHnnMnnS");
+                            sender.sendMessage(messages.getMessage(MessageType.COMMAND_PROPER_TIME_FORMAT));
                             return true;
                         }
                     }
 
                     caveEvent.create(seconds, player);
 
-                    sender.sendMessage("§aYour Caving event has been created and will last §7" + seconds + "§a seconds. §7Players can now join this event using §o/cave join§r");
+                    sender.sendMessage(messages.getMessage(MessageType.EVENT_CREATED, Placeholder.unparsed("seconds", String.valueOf(seconds))));
                 } else {
-                    sender.sendMessage("§cYou don't have permission to execute this command!");
+                    sender.sendMessage(messages.getMessage(MessageType.COMMAND_NOT_PERMITTED));
                 }
                 return true;
 
             case "join":
                 if (args.length == 1) {
                     caveEvent.join(player);
-                    sender.sendMessage("§7You have joined Caving event.");
-                }  /* else if (sender.hasPermission("caving.cave.admin")) {
+                    sender.sendMessage(messages.getMessage(MessageType.EVENT_JOINED));
+                } /* else if (sender.hasPermission("caving.cave.admin")) {
                     caveEvent.join(args[1]);
                     sender.sendMessage("§7You forced §8" + args[1] + "§7 into joining Caving event.");
                 }
@@ -73,30 +78,30 @@ public class CaveCommand implements TabExecutor {
             case "start":
                 if (sender.hasPermission("caving.cave.admin")) {
                     caveEvent.start();
-                    player.sendMessage("§7You started Caving event.");
+                    player.sendMessage(messages.getMessage(MessageType.EVENT_STARTED_HOST));
                 } else {
-                    sender.sendMessage("§cYou don't have permission to execute this command!");
+                    sender.sendMessage(messages.getMessage(MessageType.COMMAND_NOT_PERMITTED));
                 }
                 return true;
 
             case "cancel":
                 if (sender.hasPermission("caving.cave.admin")) {
                     caveEvent.cancel();
-                    sender.sendMessage("§7You canceled Caving event.");
+                    sender.sendMessage(messages.getMessage(MessageType.EVENT_CANCELED_HOST));
                 } else {
-                    sender.sendMessage("§cYou don't have permission to execute this command!");
+                    sender.sendMessage(messages.getMessage(MessageType.COMMAND_NOT_PERMITTED));
                 }
                 return true;
 
             case "rules":
-                sender.sendMessage("§7Someday you'll receive rules of Caving event here.");
+                sender.sendMessage(messages.getMessage(MessageType.EVENT_RULES));
                 return true;
 
             default:
                 if (sender.hasPermission("caving.cave.admin")) {
-                    sender.sendMessage("§cPlease use proper arguments. \n§7§o/cave (create|join|start|cancel|rules)");
+                    sender.sendMessage(messages.getMessage(MessageType.COMMAND_PROPER_ARGS, Placeholder.unparsed("command", "/cave (create|join|start|cancel|rules)")));
                 } else {
-                    sender.sendMessage("§cPlease use proper arguments. §7§o/cave (join|rules)");
+                    sender.sendMessage(messages.getMessage(MessageType.COMMAND_PROPER_ARGS, Placeholder.unparsed("command", "/cave (join|rules)")));
                 }
                 return true;
         }
