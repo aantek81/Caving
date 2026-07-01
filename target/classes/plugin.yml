@@ -1,5 +1,5 @@
 name: Caving
-version: '0.1'
+version: '1.0.0-SNAPSHOT'
 
 main: me.antek81.caving.Caving
 api-version: '26.1.2'
